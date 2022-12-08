@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ewallet/ui/pages/sign_in_page.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -116,7 +117,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                               width: double.infinity,
                               height: 24,
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignInPage(),
+                                    ),
+                                  );
+                                },
                                 style: TextButton.styleFrom(
                                   padding: EdgeInsets.zero,
                                 ),
