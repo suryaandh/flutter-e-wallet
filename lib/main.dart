@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ewallet/ui/pages/onboarding_page.dart';
+import 'package:flutter_ewallet/ui/pages/sign_in_page.dart';
 import 'package:flutter_ewallet/ui/pages/splash_page.dart';
 
 void main() {
@@ -13,10 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter e-wallet',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SplashPage(),
+      routes: {
+        '/': (context) => const SplashPage(),
+        '/onboarding': (context) => const OnBoardingPage(),
+        '/sign-in': (context) => const SignInPage(),
+      },
     );
   }
 }
