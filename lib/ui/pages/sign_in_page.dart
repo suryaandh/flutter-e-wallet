@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ewallet/ui/widgets/custom_button.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 
 class SignInPage extends StatelessWidget {
@@ -67,6 +68,9 @@ class SignInPage extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 12,
+                ),
                 //Password Input
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,25 +106,9 @@ class SignInPage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          backgroundColor: purpleColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(56),
-                          ),
-                        ),
-                        child: Text(
-                          'Sign In',
-                          style: whiteTextStyle.copyWith(
-                            fontSize: 16,
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                      ),
+                    CustomFilledButton(
+                      title: 'Sign In',
+                      onPressed: () {},
                     ),
                   ],
                 ),
@@ -130,21 +118,9 @@ class SignInPage extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          SizedBox(
-            width: double.infinity,
-            height: 24,
-            child: TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-              ),
-              child: Text(
-                'Create New Account',
-                style: greyTextStyle.copyWith(
-                  fontSize: 16,
-                ),
-              ),
-            ),
+          CustomTextButton(
+            title: 'Create New Account',
+            onPressed: () {},
           ),
         ],
       ),
