@@ -51,17 +51,17 @@ class _SignUpPageState extends State<SignUpPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //Full Name Input
-                CustomTextField(title: 'Full name'),
+                const CustomTextField(title: 'Full name'),
                 const SizedBox(
                   height: 12,
                 ),
                 //Email Input
-                CustomTextField(title: 'Email address'),
+                const CustomTextField(title: 'Email address'),
                 const SizedBox(
                   height: 12,
                 ),
                 //Password Input
-                CustomTextField(
+                const CustomTextField(
                   title: 'Password',
                   obsecureText: true,
                 ),
