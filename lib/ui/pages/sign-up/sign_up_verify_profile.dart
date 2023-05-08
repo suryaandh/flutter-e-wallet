@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/theme.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/custom_text_field.dart';
+import '../../../utils/theme.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/custom_text_field.dart';
 
-class SignUpPage extends StatefulWidget {
-  @override
-  _SignUpPageState createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
+class SignUpVerifyProfilePage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -35,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
           Text(
-            'Join Us to Unlock&\nYour Growth',
+            'Verify Your\nAccount',
             style: blackTextStyle.copyWith(
               fontSize: 20,
               fontWeight: semiBold,
@@ -48,52 +44,54 @@ class _SignUpPageState extends State<SignUpPage> {
               color: whiteColor,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                //Full Name Input
-                const CustomTextField(title: 'Full name'),
-                const SizedBox(
-                  height: 12,
-                ),
-                //Email Input
-                const CustomTextField(title: 'Email address'),
-                const SizedBox(
-                  height: 12,
-                ),
-                //Password Input
-                const CustomTextField(
-                  title: 'Password',
-                  obsecureText: true,
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forgot Password',
-                      style: blueTextStyle,
+                //Upload image
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: 120,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: lightBackgroundColor,
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        'assets/ic_upload.png',
+                        width: 32,
+                      ),
                     ),
                   ),
                 ),
-                // const SizedBox(
-                //   height: 30,
-                // ),
+                SizedBox(
+                  height: 18,
+                ),
+                Text(
+                  'Passport/ID Card',
+                  style: blackTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: medium,
+                  ),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
                 CustomFilledButton(
-                  title: 'Sign Up',
+                  title: 'Continue',
                   onPressed: () {},
                 ),
               ],
             ),
           ),
-          CustomTextButton(
-            title: 'Sign in',
-            onPressed: () {
-              Navigator.pushNamed(context, '/sign-in');
-            },
-          ),
           const SizedBox(
-            height: 100,
+            height: 60,
           ),
+          CustomTextButton(
+            title: 'Skip for now',
+            onPressed: () {
+              Navigator.pushNamed(context, '/sign_up_succes');
+            },
+          )
         ],
       ),
     );
