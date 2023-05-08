@@ -76,7 +76,10 @@ class SignUpSetProfilePage extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                CustomTextField(title: 'Set PIN (6 digit number)'),
+                const CustomTextField(
+                  title: 'Set PIN (6 digit number)',
+                  obsecureText: true,
+                ),
                 const SizedBox(
                   height: 30,
                 ),
