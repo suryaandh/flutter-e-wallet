@@ -37,52 +37,7 @@ class SignUpPage extends StatelessWidget {
               fontWeight: semiBold,
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(22),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: whiteColor,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //Full Name Input
-                const CustomTextField(title: 'Full name'),
-                const SizedBox(
-                  height: 12,
-                ),
-                //Email Input
-                const CustomTextField(title: 'Email address'),
-                const SizedBox(
-                  height: 12,
-                ),
-                //Password Input
-                const CustomTextField(
-                  title: 'Password',
-                  obsecureText: true,
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forgot Password',
-                      style: blueTextStyle,
-                    ),
-                  ),
-                ),
-                // const SizedBox(
-                //   height: 30,
-                // ),
-                CustomFilledButton(
-                  title: 'Continue',
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/sign-up-profile');
-                  },
-                ),
-              ],
-            ),
-          ),
+          _textFieldSection(context),
           CustomTextButton(
             title: 'Sign in',
             onPressed: () {
@@ -91,6 +46,53 @@ class SignUpPage extends StatelessWidget {
           ),
           const SizedBox(
             height: 100,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _textFieldSection(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: whiteColor,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //Full Name Input
+          const CustomTextField(title: 'Full name'),
+          const SizedBox(
+            height: 12,
+          ),
+          //Email Input
+          const CustomTextField(title: 'Email address'),
+          const SizedBox(
+            height: 12,
+          ),
+          //Password Input
+          const CustomTextField(
+            title: 'Password',
+            obsecureText: true,
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'Forgot Password',
+                style: blueTextStyle,
+              ),
+            ),
+          ),
+
+          CustomFilledButton(
+            title: 'Continue',
+            onPressed: () {
+              Navigator.pushNamed(context, '/sign-up-profile');
+            },
           ),
         ],
       ),
