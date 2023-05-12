@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ewallet/ui/widgets/custom_card_friendly.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_home_services.dart';
+import 'package:flutter_ewallet/ui/widgets/custom_latest_transaction_item.dart';
+import 'package:flutter_ewallet/ui/widgets/custom_user.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,57 +28,217 @@ class HomePage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildProfileSection(),
                 buildCardBank(),
                 buildProgressLevel(),
-                Container(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Do Something',
-                        style: blackTextStyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: semiBold,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 14,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomHomeServices(
-                            iconUrl: 'assets/ic_topup.png',
-                            title: 'TopUp',
-                            onTap: () {},
-                          ),
-                          CustomHomeServices(
-                            iconUrl: 'assets/ic_send.png',
-                            title: 'Send',
-                            onTap: () {},
-                          ),
-                          CustomHomeServices(
-                            iconUrl: 'assets/ic_withdraw.png',
-                            title: 'Withdraw',
-                            onTap: () {},
-                          ),
-                          CustomHomeServices(
-                            iconUrl: 'assets/ic_more.png',
-                            title: 'More',
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                buildServices(),
+                buildLatestTransaction(),
+                buildSendAgain(),
+                buildFriendlyTips()
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget buildFriendlyTips() {
+    return Container(
+      margin: const EdgeInsets.only(top: 30, bottom: 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Friendly Tips',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          Wrap(
+            spacing: 17,
+            runSpacing: 18,
+            children: [
+              FriendlyCustomCard(
+                imageUrl: 'assets/img_tips1.png',
+                title: 'Best tips for using a credit card',
+                url: 'https://www.google.com',
+              ),
+              FriendlyCustomCard(
+                  imageUrl: 'assets/img_tips2.png',
+                  title: 'Spot the good pie of finance model',
+                  url: 'https://www.pub.dev'),
+              FriendlyCustomCard(
+                  imageUrl: 'assets/img_tips3.png',
+                  title: 'Great hack to get better advices',
+                  url: 'https://www.google.com'),
+              FriendlyCustomCard(
+                  imageUrl: 'assets/img_tips4.png',
+                  title: 'Save more penny buy this instead',
+                  url: 'https://www.google.com'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSendAgain() {
+    return Container(
+      margin: const EdgeInsets.only(top: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Send Again',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: const [
+                CustomUser(
+                  imageUrl: 'assets/img_friend1.png',
+                  userName: '@yuanita',
+                ),
+                CustomUser(
+                  imageUrl: 'assets/img_friend2.png',
+                  userName: '@jani',
+                ),
+                CustomUser(
+                  imageUrl: 'assets/img_friend3.png',
+                  userName: '@uripz',
+                ),
+                CustomUser(
+                  imageUrl: 'assets/img_friend4.png',
+                  userName: '@maxx',
+                ),
+                CustomUser(
+                  imageUrl: 'assets/img_friend1.png',
+                  userName: '@johndoe',
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildLatestTransaction() {
+    return Container(
+      margin: const EdgeInsets.only(top: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Latest Transaction',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 14),
+            padding: const EdgeInsets.all(22),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: whiteColor,
+            ),
+            child: Column(
+              children: const [
+                LatestTransactionItem(
+                  iconUrl: 'assets/ic_transaction_cat1.png',
+                  title: 'Top Up',
+                  time: 'Yesterday',
+                  value: '+450.000',
+                ),
+                LatestTransactionItem(
+                  iconUrl: 'assets/ic_transaction_cat2.png',
+                  title: 'Cashback',
+                  time: 'Sep 11',
+                  value: '+22.000',
+                ),
+                LatestTransactionItem(
+                  iconUrl: 'assets/ic_transaction_cat3.png',
+                  title: 'Withdraw',
+                  time: 'Sep 2',
+                  value: '-50.000',
+                ),
+                LatestTransactionItem(
+                  iconUrl: 'assets/ic_transaction_cat4.png',
+                  title: 'Transfer',
+                  time: 'Aug 22',
+                  value: '-120.000',
+                ),
+                LatestTransactionItem(
+                  iconUrl: 'assets/ic_transaction_cat5.png',
+                  title: 'Electric',
+                  time: 'Feb 16',
+                  value: '-1.450.000',
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildServices() {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Do Something',
+            style: blackTextStyle.copyWith(
+              fontSize: 18,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomHomeServices(
+                iconUrl: 'assets/ic_topup.png',
+                title: 'TopUp',
+                onTap: () {},
+              ),
+              CustomHomeServices(
+                iconUrl: 'assets/ic_send.png',
+                title: 'Send',
+                onTap: () {},
+              ),
+              CustomHomeServices(
+                iconUrl: 'assets/ic_withdraw.png',
+                title: 'Withdraw',
+                onTap: () {},
+              ),
+              CustomHomeServices(
+                iconUrl: 'assets/ic_more.png',
+                title: 'More',
+                onTap: () {},
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
