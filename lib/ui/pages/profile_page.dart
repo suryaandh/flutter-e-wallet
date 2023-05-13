@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ewallet/ui/widgets/custom_appBar.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_button.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_profile_menu_item.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
@@ -10,7 +11,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightBackgroundColor,
-      appBar: buildAppBar(),
+      appBar: const CustomAppBar(
+        title: 'Profile',
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         children: [
@@ -112,22 +115,6 @@ class ProfilePage extends StatelessWidget {
             onPressed: () {},
           ),
         ],
-      ),
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      centerTitle: true,
-      elevation: 0,
-      backgroundColor: lightBackgroundColor,
-      iconTheme: IconThemeData(color: blackColor),
-      title: Text(
-        'Profile',
-        style: blackTextStyle.copyWith(
-          fontSize: 20,
-          fontWeight: semiBold,
-        ),
       ),
     );
   }
