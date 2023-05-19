@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List numbers = ['1', '2', '3', '5'];
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       bottomNavigationBar: customBottomAppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -198,7 +197,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget buildServices() {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
