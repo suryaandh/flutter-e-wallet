@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ewallet/ui/widgets/custom_appBar.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_button.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_profile_menu_item.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
@@ -10,9 +9,10 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
-      appBar: const CustomAppBar(
-        title: 'Profile',
+      appBar: AppBar(
+        title: const Text(
+          'Profile',
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -77,12 +77,24 @@ class ProfilePage extends StatelessWidget {
                 ProfileMenuItem(
                   iconUrl: 'assets/ic_edit_profile.png',
                   title: 'Edit Profile',
-                  onTap: () {},
+                  onTap: () async {
+                    final routerPin = Navigator.pushNamed(context, '/pin');
+                    if (await routerPin == true) {
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushNamed(context, '/profile-edit');
+                    }
+                  },
                 ),
                 ProfileMenuItem(
                   iconUrl: 'assets/ic_pin.png',
                   title: 'My pin',
-                  onTap: () {},
+                  onTap: () async {
+                    final routerPin = Navigator.pushNamed(context, '/pin');
+                    if (await routerPin == true) {
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushNamed(context, '/edit-pin');
+                    }
+                  },
                 ),
                 ProfileMenuItem(
                   iconUrl: 'assets/ic_wallet.png',
