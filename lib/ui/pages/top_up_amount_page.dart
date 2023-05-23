@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_button.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_input_pin_button.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TopUpAmountPage extends StatefulWidget {
   const TopUpAmountPage({super.key});
@@ -13,6 +15,29 @@ class TopUpAmountPage extends StatefulWidget {
 class _TopUpAmountPageState extends State<TopUpAmountPage> {
   final TextEditingController amountController =
       TextEditingController(text: '0');
+
+  @override
+  void initState() {
+    super.initState();
+
+    amountController.addListener(
+      () {
+        final text = amountController.text;
+
+        amountController.value = amountController.value.copyWith(
+          text: NumberFormat.currency(
+            locale: 'id',
+            decimalDigits: 0,
+            symbol: '',
+          ).format(
+            int.parse(
+              text.replaceAll('.', ''),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   addAmount(String number) {
     if (amountController.text == '0') {
@@ -180,12 +205,7 @@ class _TopUpAmountPageState extends State<TopUpAmountPage> {
             ),
             CustomFilledButton(
               title: 'Checkout Now',
-              onPressed: () async {
-                if (await Navigator.pushNamed(context, '/pin') == true) {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, '/topup-success', (route) => false);
-                }
-              },
+              onPressed: _launchUrl,
             ),
             const SizedBox(
               height: 25,
@@ -201,5 +221,18 @@ class _TopUpAmountPageState extends State<TopUpAmountPage> {
         ),
       ),
     );
+  }
+
+  final Uri _url = Uri.parse('https://demo.midtrans.com/');
+
+  Future<void> _launchUrl() async {
+    if (await Navigator.pushNamed(context, '/pin') == true) {
+      // launchUrl(_url);
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/topup-success', (route) => false);
+      // } else if (await  ==
+      //     true) {
+      //   throw Exception('Could not launch $_url');
+    }
   }
 }

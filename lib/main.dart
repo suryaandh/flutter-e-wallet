@@ -12,6 +12,9 @@ import 'package:flutter_ewallet/ui/pages/sign_in_page.dart';
 import 'package:flutter_ewallet/ui/pages/sign-up/sign_up_profile.dart';
 import 'package:flutter_ewallet/ui/pages/sign-up/sign_up_verify_profile.dart';
 import 'package:flutter_ewallet/ui/pages/splash_page.dart';
+import 'package:flutter_ewallet/ui/pages/top_up_amount_page.dart';
+import 'package:flutter_ewallet/ui/pages/top_up_page.dart';
+import 'package:flutter_ewallet/ui/pages/top_up_success.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 
 void main() {
@@ -52,6 +55,9 @@ class MyApp extends StatelessWidget {
         '/profile-edit': (context) => const EditProfilePage(),
         '/profile-edit-success': (context) => const ProfileSuccesPage(),
         '/edit-pin': (context) => const EditProfilePinPage(),
+        '/topup': (context) => const TopUpPage(),
+        '/topup-amount': (context) => const TopUpAmountPage(),
+        '/topup-success': (context) => const TopUpSuccessPage(),
       },
     );
   }
