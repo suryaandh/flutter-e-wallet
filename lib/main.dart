@@ -8,13 +8,16 @@ import 'package:flutter_ewallet/ui/pages/profile/profile_page.dart';
 import 'package:flutter_ewallet/ui/pages/profile/pin_page.dart';
 import 'package:flutter_ewallet/ui/pages/sign-up/sign_up_page.dart';
 import 'package:flutter_ewallet/ui/pages/sign-up/sign_up_succes.dart';
-import 'package:flutter_ewallet/ui/pages/sign_in_page.dart';
+import 'package:flutter_ewallet/ui/pages/sign-up/sign_in_page.dart';
 import 'package:flutter_ewallet/ui/pages/sign-up/sign_up_profile.dart';
 import 'package:flutter_ewallet/ui/pages/sign-up/sign_up_verify_profile.dart';
 import 'package:flutter_ewallet/ui/pages/splash_page.dart';
-import 'package:flutter_ewallet/ui/pages/top_up_amount_page.dart';
-import 'package:flutter_ewallet/ui/pages/top_up_page.dart';
-import 'package:flutter_ewallet/ui/pages/top_up_success.dart';
+import 'package:flutter_ewallet/ui/pages/top-up/top_up_amount_page.dart';
+import 'package:flutter_ewallet/ui/pages/top-up/top_up_page.dart';
+import 'package:flutter_ewallet/ui/pages/top-up/top_up_success.dart';
+import 'package:flutter_ewallet/ui/pages/transfer/transfer_amount_page.dart';
+import 'package:flutter_ewallet/ui/pages/transfer/transfer_page.dart';
+import 'package:flutter_ewallet/ui/pages/transfer/transfer_success_page.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 
 void main() {
@@ -58,6 +61,9 @@ class MyApp extends StatelessWidget {
         '/topup': (context) => const TopUpPage(),
         '/topup-amount': (context) => const TopUpAmountPage(),
         '/topup-success': (context) => const TopUpSuccessPage(),
+        '/transfer': (context) => const TransferPage(),
+        '/transfer-amount': (context) => const TransferAmountPage(),
+        '/transfer-success': (context) => const TransferSuccessPage(),
       },
     );
   }
