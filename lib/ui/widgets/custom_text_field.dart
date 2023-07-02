@@ -6,12 +6,14 @@ class CustomTextField extends StatelessWidget {
   final String title;
   final bool obsecureText;
   final TextEditingController? controller;
+  final String? hintText;
 
   const CustomTextField({
     Key? key,
     required this.title,
     this.obsecureText = false,
     this.controller,
+    this.hintText,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class CustomTextField extends StatelessWidget {
         Text(
           title,
           style: blackTextStyle.copyWith(
-            fontWeight: medium,
+            fontWeight: semiBold,
           ),
         ),
         const SizedBox(
@@ -32,6 +34,7 @@ class CustomTextField extends StatelessWidget {
           obscureText: obsecureText,
           controller: controller,
           decoration: InputDecoration(
+            hintText: hintText,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
             ),
