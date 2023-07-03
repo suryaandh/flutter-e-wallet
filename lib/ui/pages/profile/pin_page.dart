@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_input_pin_button.dart';
+import 'package:flutter_ewallet/utils/shared.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 
 class PinPage extends StatefulWidget {
@@ -18,8 +19,14 @@ class _PinPageState extends State<PinPage> {
         pinController.text = pinController.text + number;
       });
     }
-    if (pinController.text.length == 6 && pinController.text == '123123') {
-      Navigator.pop(context, true);
+
+    if (pinController.text.length == 6) {
+      if (pinController.text.length == 6 && pinController.text == '123123') {
+        Navigator.pop(context, true);
+      } else {
+        showCustomSnackBar(
+            context, 'PIN yang anda masukkan salah. Silahkan ciba lagi');
+      }
     }
   }
 
