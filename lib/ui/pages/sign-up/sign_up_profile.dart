@@ -1,13 +1,27 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_ewallet/utils/shared.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../../../models/sign_up_model.dart';
 import '../../../utils/theme.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
 
-class SignUpSetProfilePage extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
+class SignUpSetProfilePage extends StatefulWidget {
+  final SignUpModel data;
 
-  final TextEditingController _passwordController = TextEditingController();
+  const SignUpSetProfilePage({super.key, required this.data});
+
+  @override
+  State<SignUpSetProfilePage> createState() => _SignUpSetProfilePageState();
+}
+
+class _SignUpSetProfilePageState extends State<SignUpSetProfilePage> {
+  final pinController = TextEditingController(text: '');
+
+  XFile? selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -47,19 +61,34 @@ class SignUpSetProfilePage extends StatelessWidget {
               children: [
                 //Upload image
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () async {
+                    final image = await selectImage();
+                    setState(() {
+                      selectedImage = image;
+                    });
+                  },
                   child: Container(
                     height: 120,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: lightBackgroundColor,
+                      image: selectedImage == null
+                          ? null
+                          : DecorationImage(
+                              image: FileImage(
+                                File(selectedImage!.path),
+                              ),
+                              fit: BoxFit.cover,
+                            ),
                     ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/ic_upload.png',
-                        width: 32,
-                      ),
-                    ),
+                    child: selectedImage != null
+                        ? null
+                        : Center(
+                            child: Image.asset(
+                              'assets/ic_upload.png',
+                              width: 32,
+                            ),
+                          ),
                   ),
                 ),
                 const SizedBox(
@@ -75,9 +104,10 @@ class SignUpSetProfilePage extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                const CustomTextField(
+                CustomTextField(
                   title: 'Set PIN (6 digit number)',
-                  obsecureText: true,
+                  obscureText: true,
+                  controller: pinController,
                 ),
                 const SizedBox(
                   height: 30,

@@ -48,12 +48,11 @@ class EditProfilePage extends StatelessWidget {
                     //Password Input
                     const CustomTextField(
                       title: 'Password',
-                      obsecureText: true,
+                      obscureText: true,
                     ),
                     const SizedBox(
                       height: 30,
                     ),
-
                     CustomFilledButton(
                       title: 'Update Now',
                       onPressed: () {

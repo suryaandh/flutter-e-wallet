@@ -4,14 +4,14 @@ import '../../utils/theme.dart';
 
 class CustomTextField extends StatelessWidget {
   final String title;
-  final bool obsecureText;
+  final bool obscureText;
   final TextEditingController? controller;
   final String? hintText;
 
   const CustomTextField({
     Key? key,
     required this.title,
-    this.obsecureText = false,
+    this.obscureText = false,
     this.controller,
     this.hintText,
   }) : super(key: key);
@@ -31,7 +31,7 @@ class CustomTextField extends StatelessWidget {
           height: 8,
         ),
         TextFormField(
-          obscureText: obsecureText,
+          obscureText: obscureText,
           controller: controller,
           decoration: InputDecoration(
             hintText: hintText,

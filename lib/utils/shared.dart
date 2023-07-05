@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
 
 void showCustomSnackBar(BuildContext context, String message) {
   Flushbar(
@@ -18,4 +19,11 @@ String formatCurrency(num number, {String symbol = "Rp "}) {
     symbol: symbol,
     decimalDigits: 0,
   ).format(number);
+}
+
+Future<XFile?> selectImage() async {
+  XFile? selectedImage = await ImagePicker().pickImage(
+    source: ImageSource.gallery,
+  );
+  return selectedImage;
 }

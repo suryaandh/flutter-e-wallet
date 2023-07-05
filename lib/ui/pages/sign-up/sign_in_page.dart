@@ -3,8 +3,16 @@ import 'package:flutter_ewallet/ui/widgets/custom_button.dart';
 import 'package:flutter_ewallet/ui/widgets/custom_text_field.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  final emailController = TextEditingController(text: '');
+  final passwordController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +61,7 @@ class SignInPage extends StatelessWidget {
                 //Password Input
                 CustomTextField(
                   title: 'Password',
-                  obsecureText: true,
+                  obscureText: true,
                 ),
                 Align(
                   alignment: Alignment.centerRight,
