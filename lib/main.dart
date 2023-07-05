@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ewallet/ui/pages/data/data_provider_page.dart';
 import 'package:flutter_ewallet/ui/pages/data/data_selected_page.dart';
 import 'package:flutter_ewallet/ui/pages/data/data_success_page.dart';
@@ -23,6 +24,8 @@ import 'package:flutter_ewallet/ui/pages/transfer/transfer_page.dart';
 import 'package:flutter_ewallet/ui/pages/transfer/transfer_success_page.dart';
 import 'package:flutter_ewallet/utils/theme.dart';
 
+import 'blocs/auth/auth_bloc.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,45 +35,49 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          scaffoldBackgroundColor: lightBackgroundColor,
-          appBarTheme: AppBarTheme(
-            backgroundColor: lightBackgroundColor,
-            centerTitle: true,
-            elevation: 0,
-            iconTheme: IconThemeData(color: blackColor),
-            titleTextStyle: blackTextStyle.copyWith(
-              fontSize: 20,
-              fontWeight: semiBold,
-            ),
-          )),
-      title: 'Flutter e-wallet',
-      routes: {
-        '/': (context) => const SplashPage(),
-        '/onboarding': (context) => const OnBoardingPage(),
-        '/sign-in': (context) => const SignInPage(),
-        '/sign-up': (context) => SignUpPage(),
-        '/sign-up-profile': (context) => SignUpSetProfilePage(),
-        '/sign_up_verify_profile': (context) => SignUpVerifyProfilePage(),
-        '/sign_up_succes': (context) => const SignUpSuccesPage(),
-        '/home': (context) => const HomePage(),
-        '/profile': (context) => const ProfilePage(),
-        '/pin': (context) => const PinPage(),
-        '/profile-edit': (context) => const EditProfilePage(),
-        '/profile-edit-success': (context) => const ProfileSuccesPage(),
-        '/edit-pin': (context) => const EditProfilePinPage(),
-        '/topup': (context) => const TopUpPage(),
-        '/topup-amount': (context) => const TopUpAmountPage(),
-        '/topup-success': (context) => const TopUpSuccessPage(),
-        '/transfer': (context) => const TransferPage(),
-        '/transfer-amount': (context) => const TransferAmountPage(),
-        '/transfer-success': (context) => const TransferSuccessPage(),
-        '/data-provider': (context) => const DataProviderPage(),
-        '/data-selected': (context) => const DataSelectedPage(),
-        '/data-success': (context) => const DataSuccessPage(),
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthBloc()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            scaffoldBackgroundColor: lightBackgroundColor,
+            appBarTheme: AppBarTheme(
+              backgroundColor: lightBackgroundColor,
+              centerTitle: true,
+              elevation: 0,
+              iconTheme: IconThemeData(color: blackColor),
+              titleTextStyle: blackTextStyle.copyWith(
+                fontSize: 20,
+                fontWeight: semiBold,
+              ),
+            )),
+        title: 'Flutter e-wallet',
+        routes: {
+          '/': (context) => const SplashPage(),
+          '/onboarding': (context) => const OnBoardingPage(),
+          '/sign-in': (context) => const SignInPage(),
+          '/sign-up': (context) => SignUpPage(),
+          '/sign_up_verify_profile': (context) => SignUpVerifyProfilePage(),
+          '/sign_up_succes': (context) => const SignUpSuccesPage(),
+          '/home': (context) => const HomePage(),
+          '/profile': (context) => const ProfilePage(),
+          '/pin': (context) => const PinPage(),
+          '/profile-edit': (context) => const EditProfilePage(),
+          '/profile-edit-success': (context) => const ProfileSuccesPage(),
+          '/edit-pin': (context) => const EditProfilePinPage(),
+          '/topup': (context) => const TopUpPage(),
+          '/topup-amount': (context) => const TopUpAmountPage(),
+          '/topup-success': (context) => const TopUpSuccessPage(),
+          '/transfer': (context) => const TransferPage(),
+          '/transfer-amount': (context) => const TransferAmountPage(),
+          '/transfer-success': (context) => const TransferSuccessPage(),
+          '/data-provider': (context) => const DataProviderPage(),
+          '/data-selected': (context) => const DataSelectedPage(),
+          '/data-success': (context) => const DataSuccessPage(),
+        },
+      ),
     );
   }
 }
