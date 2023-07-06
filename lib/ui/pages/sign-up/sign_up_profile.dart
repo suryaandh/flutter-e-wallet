@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ewallet/ui/pages/sign-up/sign_up_verify_profile.dart';
 import 'package:flutter_ewallet/utils/shared.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -22,6 +24,13 @@ class _SignUpSetProfilePageState extends State<SignUpSetProfilePage> {
   final pinController = TextEditingController(text: '');
 
   XFile? selectedImage;
+
+  bool validate() {
+    if (pinController.text.length != 6) {
+      return false;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +117,7 @@ class _SignUpSetProfilePageState extends State<SignUpSetProfilePage> {
                   title: 'Set PIN (6 digit number)',
                   obscureText: true,
                   controller: pinController,
+                  keyboardType: TextInputType.number,
                 ),
                 const SizedBox(
                   height: 30,
@@ -115,7 +125,23 @@ class _SignUpSetProfilePageState extends State<SignUpSetProfilePage> {
                 CustomFilledButton(
                   title: 'Continue',
                   onPressed: () {
-                    Navigator.pushNamed(context, '/sign_up_verify_profile');
+                    if (validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpVerifyProfilePage(
+                            data: widget.data.copyWith(
+                              pin: pinController.text,
+                              profilePicture: selectedImage == null
+                                  ? null
+                                  : 'data:image/png;base64${base64Encode(File(selectedImage!.path).readAsBytesSync())}',
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      showCustomSnackBar(context, "Pin harus 6 digit");
+                    }
                   },
                 ),
               ],
